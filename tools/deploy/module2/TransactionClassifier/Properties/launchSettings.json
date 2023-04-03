@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "FunctionApp1": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "OPENAI_API_KEY": "8a62beb9c8074123a558eff4c0bfdca2",
+        "OPENAI_API_BASE": "https://openai-demo-ahmedbham.openai.azure.com/",
+        "STORAGE_ACCOUNT_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=xactclassifierahmedbham;AccountKey=zTyIgYos4FtKrJW0AWVqAderZsQJhymQuNmD3IBCNlSpOmFF25KUrAMQYNDk4FulWXUJi6wnko8R+ASt/krmYw==;EndpointSuffix=core.windows.net",
+        "OPENAI_API_MODEL": "text-davinci-003"
+      }
+    }
+  }
+}
