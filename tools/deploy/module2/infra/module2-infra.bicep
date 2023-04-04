@@ -23,10 +23,16 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   kind: 'StorageV2'
 }
 
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2022-09-01' = {
+  name: 'default'
+  parent: storageAccount
+}
+
 
 // Create storage containers
 resource classificationContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = {
-  name: '${storageAccount.name}.classification'
+  name: 'classification'
+  parent: blobService
  
   properties: {
     publicAccess: 'Blob'
@@ -34,8 +40,8 @@ resource classificationContainer 'Microsoft.Storage/storageAccounts/blobServices
 }
 
 resource outputContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = {
-  name: '${storageAccount.name}.output'
-  
+  name: 'output'
+  parent: blobService
   properties: {
     publicAccess: 'Blob'
   }
