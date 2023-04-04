@@ -70,20 +70,37 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
           name: 'AzureWebJobsStorage'
           value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};AccountKey=[account_key];EndpointSuffix=core.windows.net'
         }
+        {
+          name: 'FUNCTIONS_EXTENSION_VERSION'
+          value: '~4'
+        }
+        {
+          name: 'FUNCTIONS_WORKER_RUNTIME'
+          value: 'dotnet'
+        }
       ]
     }
   }
 }
 
+resource systemTopic 'Microsoft.EventGrid/systemTopics@2021-12-01' = {
+  name: 'classification'
+  location: location
+  properties: {
+    source: storageAccount.id
+    topicType: 'Microsoft.Storage.StorageAccounts'
+  }
+}
+
 // Create event grid subscription
-resource eventGridSubscription 'Microsoft.EventGrid/eventSubscriptions@2022-06-15' = {
+resource eventGridSubscription 'Microsoft.EventGrid/systemTopics/eventSubscriptions@2021-12-01' = {
   name: 'storage-account-blob-created'
-  dependsOn: [storageAccount]
+  parent: systemTopic
   properties: {
     destination: {
       endpointType: 'AzureFunction'
       properties: {
-        resourceId: resourceId('Microsoft.Web/sites', 'xact-classifier-openai-46u75fgxwk4fq')  // functionApp.id
+        resourceId: functionApp.id // resourceId('Microsoft.Web/sites', 'xact-classifier-openai-46u75fgxwk4fq')
               }
     }
     filter: {
