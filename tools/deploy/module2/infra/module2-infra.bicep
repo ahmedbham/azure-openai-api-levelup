@@ -11,7 +11,7 @@ param location string = resourceGroup().location
 
 // Declare variables
 var storageAccountType = 'Standard_LRS'
-var appServicePlanSku = 'F1'
+var appServicePlanSku = 'S1'
 
 // Create storage account
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
@@ -54,7 +54,6 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   sku: {
     name: appServicePlanSku
     tier: 'Standard'
-    size: 'S1'
   }
 }
 
