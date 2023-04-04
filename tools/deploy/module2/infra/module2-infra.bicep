@@ -81,10 +81,10 @@ resource eventGridSubscription 'Microsoft.EventGrid/eventSubscriptions@2022-06-1
   dependsOn: [storageAccount]
   properties: {
     destination: {
-      endpointType: 'WebHook'
+      endpointType: 'AzureFunction'
       properties: {
-        endpointUrl: '${functionApp.properties.defaultHostName}/runtime/webhooks/eventgrid?functionName=[function_name]'
-      }
+        resourceId: functionApp.id
+              }
     }
     filter: {
       includedEventTypes: [
