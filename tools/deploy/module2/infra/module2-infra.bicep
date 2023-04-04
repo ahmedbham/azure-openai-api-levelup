@@ -83,7 +83,7 @@ resource eventGridSubscription 'Microsoft.EventGrid/eventSubscriptions@2022-06-1
     destination: {
       endpointType: 'AzureFunction'
       properties: {
-        resourceId: functionApp.id
+        resourceId: resourceId('Microsoft.Web/sites', 'xact-classifier-openai-46u75fgxwk4fq')  // functionApp.id
               }
     }
     filter: {
