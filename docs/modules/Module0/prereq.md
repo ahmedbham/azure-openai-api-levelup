@@ -40,7 +40,7 @@ This will require performing the following tasks:
 
 ```bash
 az login
-resourceGroupName="openai-levelup"
+export resourceGroupName="openai-levelup-rg"
 location="eastus"
 az group create --name $resourceGroupName --location $location
 ```
@@ -50,7 +50,8 @@ az group create --name $resourceGroupName --location $location
 * execute [aad-federated-cred.sh]() bash file in your local machine, passing your github username as the argument.
 
 ```bash
-./aad-federated-cred.sh <github-username>
+chmod +x ./tools/deploy/module0/aad-federated-cred.sh
+./tools/deploy/module0/aad-federated-cred.sh <github-username>
 ```
 
 * note the appId echoed by the script for next step
@@ -63,7 +64,7 @@ az group create --name $resourceGroupName --location $location
    * `AZURE_SUBSCRIPTION_ID`(run `az account show --query id -o tsv` to get the value)
    * `AZURE_TENANT_ID` (run `az account show --query tenantId --output tsv` to get the value)
    * `AZURE_CLIENT_ID` (this is the `appId` from running the previous step)
-   * `AZURE_RESOURCE_GROUP` (this is the `resourceGroupName` from earlier step)
+   * `AZURE_RESOURCE_GROUP` (this is the `resourceGroupName` from earlier step, which is `openai-levelup-rg`)
 
 ### Enable GitHub Actions workflow
 
