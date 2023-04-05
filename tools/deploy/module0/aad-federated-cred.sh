@@ -5,6 +5,12 @@ if [ -z "$github_username" ]; then
 	exit 1
 fi
 
+resourceGroupName=$2
+if [ -z "$resourceGroupName" ]; then
+	resourceGroupName=openai-levelup
+	exit 0
+fi
+
 sed -i "s/your-github-username/$github_username/g" tools/deploy/module0/credential.json
 
 # Create an Azure AD application
@@ -13,7 +19,7 @@ appId=$(az ad app create --display-name $uniqueAppName --query appId --output ts
 echo "appId is $appId"
 
 # Create a service principal for the Azure AD app.
-assigneeObjectId=$(az ad sp show --id $appId --query id --output tsv)
+assigneeObjectId=$(az ad sp create --id $appId --query id --output tsv)
 
 # Create a role assignment for the Azure AD app.
 subscriptionId=$(az account show --query id --output tsv)
