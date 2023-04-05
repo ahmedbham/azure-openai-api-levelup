@@ -22,6 +22,13 @@ jobs:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v3
 
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}          
+
     - name: 'retrieve the Function App name'
       id: get_functionapp_name
       uses: azure/CLI@v1
