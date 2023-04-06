@@ -2,7 +2,7 @@
 title: Lab - Transaction Classification Application
 parent:  Module 2 - Transaction Classification Application
 has_children: false
-nav_order: 1
+nav_order: 2
 ---
 
 # Module 2: Lab - Transaction Classification Application
@@ -46,6 +46,8 @@ This module requires creation of following Azure resources
   5. Select`Function App` as the `Endpoint Type`
   6. Set `Endpoint`value by selecting the correct `Subscription`, `Resource Group`, `Function App`, `Slot`, and `Function` from the dropdowns
   7. Click `Create` to create the subscription
+
+![Event Grid Subscription Page](../../assets/images/module2/module2-create-event-subscription.png)
 
 * Open the sample transaction file [25000_spend_dataset_current_25.csv](../../../tools/deploy/Module2/data/25000_spend_dataset_current_25.csv) and notice that the **classification** column is empty. This is the column that will be populated by the Azure Function by calling Azure OpenAI API.   	
 * Upload this file to the **classification** blob container: `portal > storage account > containers > classification > upload`
