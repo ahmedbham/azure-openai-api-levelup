@@ -75,6 +75,26 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
           value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
         }
         {
+          name: 'WEBSITE_CONTENTSHARE'
+          value: functionAppName
+        }
+        {
+          name: 'STORAGE_ACCOUNT_CONNECTION_STRING'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
+        }
+        {
+          name: 'OPENAI_API_BASE'
+          value: 'Enter your Azure OpenAI API Endpoint URL'
+        }
+        {
+          name: 'OPENAI_API_KEY'
+          value: 'Enter your Azure OpenAI API Key'
+        }
+        {
+          name: 'OPENAI_API_MODEL'
+          value: 'text-davinci-003'
+        }
+        {
           name: 'FUNCTIONS_EXTENSION_VERSION'
           value: '~4'
         }

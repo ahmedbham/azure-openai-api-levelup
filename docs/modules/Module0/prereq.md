@@ -12,6 +12,7 @@ nav_order: 2
 * Azure Subscription (if you don't have one, you can create a free account [here](https://azure.microsoft.com/en-us/free/))
 * Azure CLI (if you don't have one, you can install it [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))
 * Github Account (if you don't have one, you can create one [here](https://github.com)
+* Azure OpenAI API resource and deployment of `text-davinci-003` model (see instructions for setting these up [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal))
 
 ## Infrastructure Deployment via GitHub Actions using OpenID Connect and Bicep (IaC)
 
