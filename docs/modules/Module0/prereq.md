@@ -5,25 +5,25 @@ has_children: false
 nav_order: 2
 ---
 
-# Pre-requisites
-
-## Requirements
+## What are the pre-requisites for this workshop?
 
 * Azure Subscription (if you don't have one, you can create a free account [here](https://azure.microsoft.com/en-us/free/))
 * Azure CLI (if you don't have one, you can install it [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))
 * Github Account (if you don't have one, you can create one [here](https://github.com)
 * Azure OpenAI API resource and deployment of `text-davinci-003` model (see instructions for setting these up [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal))
 
-## Infrastructure Deployment via GitHub Actions using OpenID Connect and Bicep (IaC)
+
+## What infrastructure will be deployed for this workshop?
 
 For this workshop, we will be using GitHub Actions using OpenID Connect and Infrastructure-as-Code (IaC) using Bicep to deploy the AKS cluster, to derive following benefits:
 
-* Infrastructure-as-Code (IaC) - Infrastructure is defined as code, and can be version controlled and reviewed. 
+* Infrastructure-as-Code (IaC) - Infrastructure is defined as code, and can be version controlled and reviewed.
 * OpenID Connect - OpenID Connect is an authentication protocol that allows you to connect securely to Azure resources using your GitHub account.
 * GitHub Actions - GitHub Actions is a feature of GitHub that allows you to automate your software development workflows.
-* Bicep - Bicep is a Domain Specific Language (DSL) for deploying Azure resources declaratively. It aims to drastically simplify the authoring experience with a cleaner syntax, improved type safety, and better support for modularity and code re-use.
 
-This will require performing the following tasks:
+## How do I get started with the workshop?
+
+To get started with the workshop, we will perform the following tasks:
 
 1. Forking this repository into your GitHub account 
 2. Creating an Azure Resource Group
@@ -48,18 +48,18 @@ az group create --name $resourceGroupName --location $location
 
 ### Configuring OpenID Connect in Azure
 
-* execute [aad-federated-cred.sh]() bash file in your local machine, passing your github username as the argument.
+* execute [aad-federated-cred.sh](../../../tools/deploy/module0/aad-federated-cred.sh) bash file in your local machine, passing your github username as the argument, as shown below:
 
 ```bash
 chmod +x ./tools/deploy/module0/aad-federated-cred.sh
 ./tools/deploy/module0/aad-federated-cred.sh <github-username>
 ```
 
-* note the appId echoed by the script for next step
+* note down the **appId** echoed by the running the above script for use in next step
 
 ### Setting Github Actions secrets
 
-1. Open your forked Github repository and click on the `Settings` tab.
+1. Open your forked Github repository in Github and click on the `Settings` tab.
 2. In the left-hand menu, expand `Secrets and variables`, and click on `Actions`.
 3. Click on the `New repository secret` button for each of the following secrets:
    * `AZURE_SUBSCRIPTION_ID`(run `az account show --query id -o tsv` to get the value)
