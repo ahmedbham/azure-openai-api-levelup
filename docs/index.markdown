@@ -1,15 +1,22 @@
-# About this workshop
+# Azure OpenAI API Hands-on LevelUp Labs
 
-In attending this LevelUp Workshop you will learn more about the following :
+Welcome to the **Azure OpenAI API Hands-on LevelUp Labs** repository! This repository contains three hands-on labs that will help you build intelligent applications using OpenAI API.
 
-- Understanding of DevSecOps, including vulnerabilities and best practices
-- Implementation of DevSecOps best practices for AKS
-- Understanding and Implementation of Features/Capabilities in Github and Azure to implement DevSecOps best practices for AKS
-- Newer features of Github and Azure to implement DevSecOps best practices for AKS, including Defender for DevOps, AKS add-ons, Defender for Containers, VS Code, etc.
+## Lab 1: Book Creator Sample Learning App
 
-## Diagram
+This lab demonstrates how to use the [semantic kernel](https://github.com/microsoft/semantic-kernel) framework to integrate OpenAI's Large Language Models (LLMs) with conventional programming languages. You will learn how to build an intelligent book creator app that can generate new content based on existing text.
 
-- ![AKS DevSecOps Architecture](assets/images/module0/aks-devsecops-architecture.png)
+## Lab 2: ChatGPT + Enterprise Data with OpenAI and Azure Cognitive Search
+This lab shows how to use Azure OpenAI Service to access the ChatGPT model (gpt-35-turbo) and Azure Cognitive Search for data indexing and retrieval. You will learn how to build a chatbot that can answer questions using enterprise data.
+
+## Lab 3: Transaction Classification Application
+
+This lab demonstrates how to classify transaction records using OpenAI's GPT-3 language model and Azure Storage, Azure Event Grid, and Azure Function services. You will learn how to build an intelligent transaction classification app that can automatically categorize financial transactions.
+
+## Getting Started
+
+To get started with these labs, you will need to have an Azure OpenAI API key and access to Azure services. Please follow the instructions in [pre-req](./modules/Module0/prereq.md) file to set up the necessary environment and dependencies
+
 
 ## Contributors
 
