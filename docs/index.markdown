@@ -2,7 +2,7 @@
 
 In attending this LevelUp Workshop you will learn more about the following :
 
-- Understanding of DevSecOps, including vulnerabilities and best practices
+- Understanding of DevSecOps, including vulnerabilities and best practice
 - Implementation of DevSecOps best practices for AKS
 - Understanding and Implementation of Features/Capabilities in Github and Azure to implement DevSecOps best practices for AKS
 - Newer features of Github and Azure to implement DevSecOps best practices for AKS, including Defender for DevOps, AKS add-ons, Defender for Containers, VS Code, etc.
