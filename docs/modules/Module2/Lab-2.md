@@ -5,51 +5,38 @@ has_children: false
 nav_order: 2
 ---
 
-# Module 2: Lab - Transaction Classification Application
+### Installation
 
-In this lab, you will create a transaction classification application that uses the Azure OpenAI API and other Azure services to classify a public dataset of transactions into a number of categories that we have predefined. These approaches should be replicable to any multiclass classificaiton use case where we are trying to fit transactional data into predefined categories, and by the end of running through this you should have an approach for dealing with unlabelled datasets.
+#### Project Initialization
 
-## Installation
+1. Create a new folder and switch to it in the terminal
+1. Run `azd login`
+   > [!NOTE]
+   > if you are using a non-Microsoft account, and if running CodeSpaces in the browser, you will need to run:
+   >
+   > `azd login --tenant <your tenant id> --use-device-code=false`
+   >
+   > You may receive an error with message `localhost refused to connect` after logging in. If so:
+   > 
+   > 1. Copy the URL.
+   > 1. Run `curl '<pasted url>'` (URL in quotes) in a new Visual Studio Code terminal.
+   > 
+   > In the original terminal, the login should now succeed.
 
-This module requires creation of following Azure resources
-  1. An Azure Storage Account and two containers: 
-    1. "classification" - for the transaction file
-    2. "output" - for the results
-  2. An Azure Function App Resource
-  3. An Event Grid Subscription to the Azure Function App Resource from the Azure Storage Account for "Blob Created" events
-  
-  * The first two listed resources are created by running the Github Actions workflow file [module2-infra-worflow.yaml](../../../.github/workflows/module2-infra-workflow.yaml) which executes [module2-infra.bicep](../../../tools/deploy/Module2/infra/module2-infra.bicep) Bicep template. To trigger this workflow manually:
-    1. click on the `Actions` tab.
-    2. Select `.github/workflows/module2-infra-worflow.yaml`.
-    3. Click on the `Run workflow` button
+1. Run `azd init -t azure-search-openai-demo`
+    * For the target location, the regions that currently support the models used in this sample are **East US** or **South Central US**. For an up-to-date list of regions and models, check [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
 
-* Deploy the Azure Function App code using Github Actions workflow file [module2-code-workflow.yaml](../../../.github/workflows/module2-code-workflow.yaml) as follows:
-  1. In Azure portal, navigate to the Function App that was deployed in the last step.
-  2. Click **Get publish profile** and download **.PublishSettings** file.
-  3. Open the **.PublishSettings** file and copy the XML content.
-  4. Paste the XML content to your GitHub Repository > Settings > Secrets > Add a new secret > **AZURE_FUNCTIONAPP_PUBLISH_PROFILE**
-  5. Trigger this workflow manually:
-    * click on the `Actions` tab.
-    * Select `.github/workflows/module2-code-worflow.yaml`.
-    * Click on the `Run workflow` button
+1. Execute the following command:
 
-* Configure following **Application Settings** for the Azure Function by going to your `function app > Configuration > Application Settings`:
-  1. OPENAI_API_BASE - Azure OpenAI API Endpoint URL (e.g. https://openai-demo-ahmedbham.openai.azure.com/)
-  2. OPENAI_API_KEY - Azure OpenAI API Key
-  3. OPENAI_API_MODEL - "text-davinci-003" (set it equal to the `model name` you provided when deploying the `text-davinci-003` **model** in Azure OpenAI Studio)
+  1. `azd up` - This will provision Azure resources and deploy this sample to those resources, including building the search index based on the files found in the ./data folder.
+  2. After the application has been successfully deployed you will see a URL printed to the console. Click that URL to interact with the application in your browser.
 
-* Create an `Event Grid Subscription` to the Azure Function App Resource from the Azure Storage Account for "Blob Created" events in Azure portal:
-  1. Navigate to your `storage account > Events > + Event Subscription`
-  2. Set `Event Schema` to `Event Grid Schema``
-  3. Set `System Topic Name` to `classification`
-  4. Select only `Blob Created` event type
-  5. Select`Function App` as the `Endpoint Type`
-  6. Set `Endpoint`value by selecting the correct `Subscription`, `Resource Group`, `Function App`, `Slot`, and `Function` from the dropdowns
-  7. Click `Create` to create the subscription
+It will look like the following:
+![Endpoint](../../assets/images/module2/endpoint.png)
 
-![Event Grid Subscription Page](../../assets/images/module2/module2-create-event-subscription.png)
+> NOTE: It may take a minute for the application to be fully deployed. If you see a "Python Developer" welcome screen, then wait a minute and refresh the page.
 
-* Open the sample transaction file [25000_spend_dataset_current_25.csv](../../../tools/deploy/Module2/data/25000_spend_dataset_current_25.csv) and notice that the **classification** column is empty. This is the column that will be populated by the Azure Function by calling Azure OpenAI API.   	
-* Upload this file to the **classification** blob container: `portal > storage account > containers > classification > upload`
-* After few seconds, download the updated file from the **output** blob container `portal > storage account > containers > output > download`
-* Open the file and notice the **classification** column is populated with the predicted category for each transaction.
+Once in the web app:
+* Try different topics in chat or Q&A context. For chat, try follow up questions, clarifications, ask to simplify or elaborate on answer, etc.
+* Explore citations and sources
+* Click on "settings" to try different options, tweak prompts, etc.
