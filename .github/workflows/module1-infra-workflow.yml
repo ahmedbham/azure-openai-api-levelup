@@ -3,8 +3,8 @@ on:
     branches:
       - main
     paths:
-      - 'tools/deploy/module2/**'
-      - 'module2-infra-workflow.yaml'
+      - 'tools/deploy/module1/**'
+      - 'module1-infra-workflow.yaml'
   
   workflow_dispatch:
 env:
@@ -35,7 +35,7 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ secrets.AZURE_RESOURCE_GROUP }}
-        template: tools/deploy/module2/infra/module2-infra.bicep 
+        template: tools/deploy/module1/infra/module1-infra.bicep 
         # parameters: tools/deploy/module0/azuredeploy.parameters.json
         failOnStdErr: false
 

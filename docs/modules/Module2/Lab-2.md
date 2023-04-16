@@ -1,13 +1,13 @@
 ---
-title: Lab - Transaction Classification Application
-parent:  Module 2 - Transaction Classification Application
+title: Lab 
+parent:  Module 2 - Azure OpenAI and Cognitive Search
 has_children: false
 nav_order: 2
 ---
 
-### Installation
+## Installation
 
-#### Project Initialization
+### Project Initialization
 
 1. Create a new folder and switch to it in the terminal
 1. Run `azd login`

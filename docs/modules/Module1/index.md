@@ -1,9 +1,9 @@
 ---
-title: Module 2 - Transaction Classification Application
+title: Module 1 - Transaction Classification Application
 
 has_children: true
 
 ---
 
-## Module 2 - Transaction Classification Application
+## Module 1 - Transaction Classification Application
 

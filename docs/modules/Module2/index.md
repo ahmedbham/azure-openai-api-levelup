@@ -1,9 +1,9 @@
 ---
-title: Module 2 - Transaction Classification Application
+title: Module 2 - Azure OpenAI and Cognitive Search
 
 has_children: true
 
 ---
 
-## Module 2 - Transaction Classification Application
+## Module 2 - Azure OpenAI and Cognitive Search
 
