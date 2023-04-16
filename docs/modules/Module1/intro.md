@@ -1,6 +1,6 @@
 ---
 title: Overview
-parent:  Module 2 - Transaction Classification Application
+parent:  Module 1 - Transaction Classification Application
 has_children: false
 nav_order: 1
 ---
@@ -12,11 +12,11 @@ The intent is to classify a public dataset of transactions into a number of cate
 
 ## Diagram
 
-![Transaction Classification Application Architecture](../../assets/images/module2/transaction-classification-application-architecture.png)
+![Transaction Classification Application Architecture](../../assets/images/module1/transaction-classification-application-architecture.png)
 
 ## Azure Function Logic
 
-The Azure Function logic is implemented in [TransactionClassifier.cs](../../../tools/deploy/module2/TransactionClassifier/TransactionClassifier.cs) file. The logic is as follows:
+The Azure Function logic is implemented in [TransactionClassifier.cs](../../../tools/deploy/module1/TransactionClassifier/TransactionClassifier.cs) file. The logic is as follows:
 
 ### Prompt Engineering
 
