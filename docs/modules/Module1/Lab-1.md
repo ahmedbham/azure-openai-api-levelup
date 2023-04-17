@@ -17,21 +17,43 @@ This module requires creation of following Azure resources
     2. "output" - for the results
   2. An Azure Function App Resource
   3. An Event Grid Subscription to the Azure Function App Resource from the Azure Storage Account for "Blob Created" events
-  
-  * The first two listed resources are created by running the Github Actions workflow file [module1-infra-worflow.yaml](../../../.github/workflows/module1-infra-workflow.yaml) which executes [module2-infra.bicep](../../../tools/deploy/Module1/infra/module1-infra.bicep) Bicep template. To trigger this workflow manually:
-    1. click on the `Actions` tab.
-    2. Select `.github/workflows/module2-infra-worflow.yaml`.
-    3. Click on the `Run workflow` button
 
-* Deploy the Azure Function App code using Github Actions workflow file [module2-code-workflow.yaml](../../../.github/workflows/module1-code-workflow.yaml) as follows:
+### Creating an Azure Resource Group
+
+```bash
+az login
+export resourceGroupName="openai-levelup-rg"
+location="eastus"
+az group create --name $resourceGroupName --location $location
+```
+
+   > [!NOTE]
+   > if you are using a non-Microsoft account, and if running CodeSpaces in the browser, you may receive an error with message `localhost refused to connect` after logging in. If so:
+   > 
+   > 1. Copy the URL.
+   > 1. Run `curl '<pasted url>'` (URL in quotes) in a new Visual Studio Code terminal.
+   > 
+   > In the original terminal, the login should now succeed.
+
+### Creating an Azure Storage Account and two containers, and an Azure Function App Resource
+
+This is done by executing [module2-infra.bicep](../../../tools/deploy/Module1/infra/module1-infra.bicep) Bicep template file as follows:
+
+```bash
+az deployment group create --resource-group $resourceGroupName --template-file ../../../tools/deploy/Module1/infra/module1-infra.bicep
+```
+
+### Deploying the Azure Function App code
+
+* Deploy the Azure Function App code as follows:
   1. In Azure portal, navigate to the Function App that was deployed in the last step.
   2. Click **Get publish profile** and download **.PublishSettings** file.
   3. Open the **.PublishSettings** file and copy the XML content.
-  4. Paste the XML content to your GitHub Repository > Settings > Secrets > Add a new secret > **AZURE_FUNCTIONAPP_PUBLISH_PROFILE**
-  5. Trigger this workflow manually:
-    * click on the `Actions` tab.
-    * Select `.github/workflows/module2-code-worflow.yaml`.
-    * Click on the `Run workflow` button
+  4. Paste the XML content to a variable **AZURE_FUNCTIONAPP_PUBLISH_PROFILE**
+  5. Run the following command to deploy the Azure Function App code:
+  ```bash
+  func azure functionapp publish <function app name> --publish-profile $AZURE_FUNCTIONAPP_PUBLISH_PROFILE
+  ```
 
 * Configure following **Application Settings** for the Azure Function by going to your `function app > Configuration > Application Settings`:
   1. OPENAI_API_BASE - Azure OpenAI API Endpoint URL (e.g. https://openai-demo-ahmedbham.openai.azure.com/)
