@@ -16,14 +16,18 @@
         },
         "ghcr.io/devcontainers/features/powershell:1.1.0": {},
         
-        "ghcr.io/devcontainers/features/azure-cli:1.0.8": {}
+        "ghcr.io/devcontainers/features/azure-cli:1.0.8": {},
+        "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {
+			"version": "latest"
+		} 
     },
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-azuretools.azure-dev",
                 "ms-azuretools.vscode-bicep",
-                "ms-python.python"
+                "ms-python.python",
+                "ms-azuretools.vscode-azurefunctions"
             ]
         }
     },

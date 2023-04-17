@@ -16,7 +16,8 @@ This module requires creation of following Azure resources
     1. "classification" - for the transaction file
     2. "output" - for the results
   2. An Azure Function App Resource
-  3. An Event Grid Subscription to the Azure Function App Resource from the Azure Storage Account for "Blob Created" events
+  3. Building and Deploying the Azure Function App code
+  4. An Event Grid Subscription to the Azure Function App Resource from the Azure Storage Account for "Blob Created" events
 
 ### Creating an Azure Resource Group
 
@@ -43,16 +44,25 @@ This is done by executing [module2-infra.bicep](../../../tools/deploy/Module1/in
 az deployment group create --resource-group $resourceGroupName --template-file ../../../tools/deploy/Module1/infra/module1-infra.bicep
 ```
 
-### Deploying the Azure Function App code
+### Building and Deploying the Azure Function App code
 
 * Deploy the Azure Function App code as follows:
   1. In Azure portal, navigate to the Function App that was deployed in the last step.
   2. Click **Get publish profile** and download **.PublishSettings** file.
   3. Open the **.PublishSettings** file and copy the XML content.
   4. Paste the XML content to a variable **AZURE_FUNCTIONAPP_PUBLISH_PROFILE**
+  5. Run the following command to build the Azure Function App code:
+  
+  ```bash
+  cd tools/deploy/Module1/TransactionClassifier
+  appName=$(az functionapp list --resource-group $resourceGroupName --query "[].name" -o tsv)"
+  func azure functionapp publish $appName --publish-profile $AZURE_FUNCTIONAPP_PUBLISH_PROFILE
+  ```
+
   5. Run the following command to deploy the Azure Function App code:
   ```bash
-  func azure functionapp publish <function app name> --publish-profile $AZURE_FUNCTIONAPP_PUBLISH_PROFILE
+  appName=$(az functionapp list --resource-group $resourceGroupName --query "[].name" -o tsv)"
+  func azure functionapp publish $appName --publish-profile $AZURE_FUNCTIONAPP_PUBLISH_PROFILE
   ```
 
 * Configure following **Application Settings** for the Azure Function by going to your `function app > Configuration > Application Settings`:
