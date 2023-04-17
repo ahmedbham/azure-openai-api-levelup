@@ -24,7 +24,7 @@ This module requires creation of following Azure resources
 ```bash
 az login
 export resourceGroupName="openai-levelup-rg"
-location="eastus"
+export location="eastus"
 az group create --name $resourceGroupName --location $location
 ```
 
@@ -35,13 +35,14 @@ az group create --name $resourceGroupName --location $location
    > 1. Run `curl '<pasted url>'` (URL in quotes) in a new Visual Studio Code terminal.
    > 
    > In the original terminal, the login should now succeed.
+   > Run `az account set -s <your-subscription-id>`
 
 ### Creating an Azure Storage Account and two containers, and an Azure Function App Resource
 
 This is done by executing [module2-infra.bicep](../../../tools/deploy/Module1/infra/module1-infra.bicep) Bicep template file as follows:
 
 ```bash
-az deployment group create --resource-group $resourceGroupName --template-file ../../../tools/deploy/Module1/infra/module1-infra.bicep
+az deployment group create --resource-group $resourceGroupName --template-file tools/deploy/module1/infra/module1-infra.bicep
 ```
 
 ### Building and Deploying the Azure Function App code
@@ -54,15 +55,9 @@ az deployment group create --resource-group $resourceGroupName --template-file .
   5. Run the following command to build the Azure Function App code:
   
   ```bash
-  cd tools/deploy/Module1/TransactionClassifier
-  appName=$(az functionapp list --resource-group $resourceGroupName --query "[].name" -o tsv)"
-  func azure functionapp publish $appName --publish-profile $AZURE_FUNCTIONAPP_PUBLISH_PROFILE
-  ```
-
-  5. Run the following command to deploy the Azure Function App code:
-  ```bash
-  appName=$(az functionapp list --resource-group $resourceGroupName --query "[].name" -o tsv)"
-  func azure functionapp publish $appName --publish-profile $AZURE_FUNCTIONAPP_PUBLISH_PROFILE
+  cd tools/deploy/module1/TransactionClassifier
+  appName=$(az functionapp list --resource-group $resourceGroupName --query "[].name" -o tsv)
+  func azure functionapp publish $appName --publish-profile $AZURE_FUNCTIONAPP_PUBLISH_PROFILE --force
   ```
 
 * Configure following **Application Settings** for the Azure Function by going to your `function app > Configuration > Application Settings`:
@@ -85,3 +80,37 @@ az deployment group create --resource-group $resourceGroupName --template-file .
 * Upload this file to the **classification** blob container: `portal > storage account > containers > classification > upload`
 * After few seconds, download the updated file from the **output** blob container `portal > storage account > containers > output > download`
 * Open the file and notice the **classification** column is populated with the predicted category for each transaction.
+
+resource systemTopic 'Microsoft.EventGrid/systemTopics@2021-12-01' = {
+  name: 'classification'
+  location: location
+  properties: {
+    source: storageAccount.id
+    topicType: 'Microsoft.Storage.StorageAccounts'
+  }
+}
+
+var prefix = 'https://'
+var hostName = functionApp.properties.defaultHostName
+var endpointUrl = '${prefix}${hostName}'
+
+// Create event grid subscription
+resource eventGridSubscription 'Microsoft.EventGrid/systemTopics/eventSubscriptions@2021-12-01' = {
+  name: 'storage-account-blob-created'
+  parent: systemTopic
+  properties: {
+    destination: {
+      endpointType: 'WebHook'
+      properties: {
+        endpointUrl: endpointUrl
+        // resourceId: resourceId('Microsoft.Web/sites', functionApp.name)
+              }
+    }
+    filter: {
+      includedEventTypes: [
+        'Microsoft.Storage.BlobCreated'
+      ]
+      
+    }
+  }
+}

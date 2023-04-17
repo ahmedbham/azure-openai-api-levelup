@@ -107,39 +107,7 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' = {
   }
 }
 
-resource systemTopic 'Microsoft.EventGrid/systemTopics@2021-12-01' = {
-  name: 'classification'
-  location: location
-  properties: {
-    source: storageAccount.id
-    topicType: 'Microsoft.Storage.StorageAccounts'
-  }
-}
 
-var prefix = 'https://'
-var hostName = functionApp.properties.defaultHostName
-var endpointUrl = '${prefix}${hostName}'
-
-// Create event grid subscription
-resource eventGridSubscription 'Microsoft.EventGrid/systemTopics/eventSubscriptions@2021-12-01' = {
-  name: 'storage-account-blob-created'
-  parent: systemTopic
-  properties: {
-    destination: {
-      endpointType: 'WebHook'
-      properties: {
-        endpointUrl: endpointUrl
-        // resourceId: resourceId('Microsoft.Web/sites', functionApp.name)
-              }
-    }
-    filter: {
-      includedEventTypes: [
-        'Microsoft.Storage.BlobCreated'
-      ]
-      
-    }
-  }
-}
 
 
 
