@@ -1,11 +1,10 @@
 ---
-title: Module 3 - Build Phase
+title: Module 3 - Semantic Kernel
 
 has_children: true
 
 ---
 
 
-## Module 3 - Build Phase
+## Module 3 - Semantic Kernel
 
-Module 3 - Build Phase
