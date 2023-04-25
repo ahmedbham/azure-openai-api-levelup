@@ -28,9 +28,13 @@ SK provides the developer with controls over AI LLM constructs such as prompts, 
 
 ## Semantic Kernel - building blocks
 
-- Memories – Embeddings, ability to provide specific context to your ASK/Prompt
-- Skills – Domain expertise exposed as a function
-- Connectors – Ability to integrate with external, realtime APIs
+- Planner - The planner is responsible for fulfilling a specific ASK, the planner has access to a pre-defined library of pre-made skills and can also call upon memories to best situate the ASK's context and connectors to call APIs and to leverage other external capabilities if needed.
+
+- Memories – Also referred to as Embeddings and provides ability to provide specific context to an ASK or Prompt.
+
+- Skills – Domain expertise exposed as a function, an ASK may use one or many skills/functions to accomplish a goal.
+
+- Connectors – Ability to integrate with external, realtime APIs to enrich the response or perform an action.
 
 
 
