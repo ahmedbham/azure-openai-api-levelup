@@ -1,3 +1,10 @@
+---
+title: Introduction
+parent: Module 0 - Introduction and Pre-requisites
+has_children: false
+nav_order: 1
+---
+
 **What is Azure OpenAI Service?**
 
 Azure OpenAI Service is a cloud-based service that provides access to
