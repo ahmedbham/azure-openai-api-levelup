@@ -13,6 +13,7 @@ note: it is recommended that this lab exercise be done via GitHub codespaces
 
 prerequisites
 - An OpenAI or AzureOpenAI key
+- Dotnet 7.0
 
 
 ## Running the sample
