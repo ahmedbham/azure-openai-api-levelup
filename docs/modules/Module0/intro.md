@@ -24,6 +24,7 @@ To learn more about Azure OpenAI Service, you can:
 -   Check out the [Azure OpenAI Service
     documentation](https://docs.microsoft.com/en-us/azure/openai/).
 
+## Concepts:
 The user 'Prompt' gives text instructions with the appropriate context.
 The more detailed it is with possible examples, it would help the model
 to arrive to the right context and generate the result set 'Completion'
@@ -34,6 +35,8 @@ interactions. The model can be fine-tuned with a few parameters to
 customize it to the specific need. The model can be tuned to be
 deterministic/probabilistic or instructed to continue with the results
 based on these set parameter values.
+
+## Azure OpenAI Service Models:
 
 -   GPT-3 is the first offering with the 4 models Ada, Babbage, Curie
     and Davinci with the increasing inferencing capabilities, but would
