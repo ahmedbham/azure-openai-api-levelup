@@ -27,4 +27,4 @@ To get started with the workshop, we will perform the following tasks:
 ### Creating Github Codespaces on the forked repository
 
 * Open your forked Github repository in Github and click on the `Code` tab.
-* Click on the `Open with Codespaces` button.
+* Click on the `Open with Codespaces` button

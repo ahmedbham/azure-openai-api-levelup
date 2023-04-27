@@ -16,11 +16,20 @@
         },
         "ghcr.io/devcontainers/features/powershell:1.1.0": {},
         
-        "ghcr.io/devcontainers/features/azure-cli:1.0.8": {}
+        "ghcr.io/devcontainers/features/azure-cli:1.0.8": {},
+		
+        "ghcr.io/devcontainers/features/dotnet:1": {
+            "version": "6.0"        },
+        
+
+		"ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {}
     },
     "customizations": {
         "vscode": {
             "extensions": [
+                "ms-dotnettools.dotnet-interactive-vscode",
+				"ms-semantic-kernel.semantic-kernel",
+				"esbenp.prettier-vscode",
                 "ms-azuretools.azure-dev",
                 "ms-azuretools.vscode-bicep",
                 "ms-python.python"

@@ -1,4 +1,4 @@
-name: Deploy DotNet project to Azure Function App
+name: Deploy Azure Function App
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
       - 'azure-function-workflow.yaml'
 
 env: 
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'tools/deploy/module2/TransactionClassifier/'       # set this to the path to your function app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'tools/deploy/module1/TransactionClassifier/'       # set this to the path to your function app project, defaults to the repository root
   DOTNET_VERSION: '6.0.x'                   # set this to the dotnet version to use (e.g. '2.1.x', '3.1.x', '5.0.x')
   AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
 

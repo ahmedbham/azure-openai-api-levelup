@@ -7,8 +7,7 @@ fi
 
 resourceGroupName=$2
 if [ -z "$resourceGroupName" ]; then
-	resourceGroupName=openai-levelup
-	exit 0
+	resourceGroupName=openai-levelup-rg
 fi
 
 sed -i "s/your-github-username/$github_username/g" tools/deploy/module0/credential.json
