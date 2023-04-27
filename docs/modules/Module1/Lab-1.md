@@ -29,9 +29,6 @@ For this workshop, we will be using GitHub Actions using OpenID Connect and Infr
 
 ```bash
 az login
-export resourceGroupName="openai-levelup-rg"
-location="eastus"
-az group create --name $resourceGroupName --location $location
 ```
 
    > [!NOTE]
@@ -42,13 +39,32 @@ az group create --name $resourceGroupName --location $location
    > 
    > In the original terminal, the login should now succeed.
 
+```bash
+az account set -s <your-subscription-id>
+```
+
+Ensure correct Subscription Id is set
+
+```bash
+az account show
+```
+
+```bash
+export resourceGroupName="openai-levelup-rg"
+location="eastus"
+az group create --name $resourceGroupName --location $location
+```
+
 ### Configuring OpenID Connect in Azure
 
 * execute [aad-federated-cred.sh](../../../tools/deploy/module0/aad-federated-cred.sh), passing your github username as the argument, as shown below:
 
 ```bash
 chmod +x ./tools/deploy/module0/aad-federated-cred.sh
-./tools/deploy/module0/aad-federated-cred.sh <github-username>
+```
+
+```bash
+./tools/deploy/module0/aad-federated-cred.sh <your-github-username>
 ```
 
 * note down the **appId** echoed by the running the above script for use in next step
