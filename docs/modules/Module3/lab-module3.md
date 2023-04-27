@@ -9,13 +9,15 @@ nav_order: 2
  
  The Book creator sample application shows how `planner`, `skills` and `memories` are used to enrich content for a specific use case and allows you to enter in a children's book topic. Then the `Planner` creates a plan for the functions (skills) to run based on the Ask. You can see the execution plan along with the results. The `Writer` Skill functions are chained together based on the user ask.
 
-**Note**: It is recommended that this lab exercise be done via GitHub Codespaces
+Requirements:
 
-### Prerequisites
+- You will need an Open AI API Key or Azure Open AI service key to get started.
+- [Azure Functions Core Tools]([https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash) are required to run the kernel as a local web service, this service is used by the sample web app.
+- [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0). If you have .NET 7 installed, Azure Function Tools will still require .NET 6, so we suggest installing both.
+- [Yarn](https://yarnpkg.com/getting-started/install) is used for installing web apps' dependencies.
 
-- An Azure OpenAI API key
 
-## Running the sample
+## Running the Book Creator sample app
 
 **Note**: to run the sample in VS Code Desktop using Dev Containers from Github Codespaces:
   Click hamburger menu on the left side of the VS Code window in Codespaces and select **Open in VS Code Desktop**
@@ -39,6 +41,9 @@ nav_order: 2
    ```
 
    This will run the service API locally at `http://localhost:7071`.
+
+
+   `cd semantic-kernel/samples/dotnet/KernelHttpServer`
 
 4. In another terminal window, start the `BookCreator` web application
 
