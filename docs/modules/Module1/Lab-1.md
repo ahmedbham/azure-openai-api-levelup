@@ -111,6 +111,7 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
   1. OPENAI_API_BASE - Azure OpenAI API Endpoint URL (e.g. https://openai-demo-ahmedbham.openai.azure.com/)
   2. OPENAI_API_KEY - Azure OpenAI API Key
   3. OPENAI_API_MODEL - "text-davinci-003" (set it equal to the `model name` you provided when deploying the `text-davinci-003` **model** in Azure OpenAI Studio)
+**Remember to click Save after adding the above settings**
 
 ### Creating and configuring Event Grid Subscription
 
