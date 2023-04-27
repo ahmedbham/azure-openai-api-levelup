@@ -9,14 +9,16 @@ nav_order: 2
  
  The Book creator sample application shows hows planner, skills and memories are used to enrich content for a specific use case and allows you to enter in a children's book topic then the Planner creates a plan for the functions (skills) to run based on the Ask. You can see the execution plan along with the results. The Writer Skill functions are chained together based on the user ask.
 
-note: it is recommended that this lab exercise be done via GitHub codespaces
 
-prerequisites
-- An OpenAI or AzureOpenAI key
-- Dotnet 7.0
+Requirements:
+
+- You will need an Open AI API Key or Azure Open AI service key to get started.
+- [Azure Functions Core Tools]([https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash) are required to run the kernel as a local web service, this service is used by the sample web app.
+- [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0). If you have .NET 7 installed, Azure Function Tools will still require .NET 6, so we suggest installing both.
+- [Yarn](https://yarnpkg.com/getting-started/install) is used for installing web apps' dependencies.
 
 
-## Running the sample
+## Running the Book Creator sample app
 
 1. Fork or Clone the semantic kernel repo in GitHub
 
@@ -38,7 +40,7 @@ prerequisites
 
 3. In another terminal window, start the BookCreator web application
 
-   `cd samples/apps/book-creator-webapp-react/`
+   `cd semantic-kernel/samples/dotnet/KernelHttpServer`
 
 4. Rename the `.env.example` file to `.env`.
 
