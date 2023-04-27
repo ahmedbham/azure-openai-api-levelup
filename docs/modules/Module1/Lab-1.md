@@ -39,6 +39,8 @@ az login
    > 
    > In the original terminal, the login should now succeed.
 
+Set appropriate Subscrtion Id
+
 ```bash
 az account set -s <your-subscription-id>
 ```
@@ -48,6 +50,7 @@ Ensure correct Subscription Id is set
 ```bash
 az account show
 ```
+Create Azure Resource Group
 
 ```bash
 export resourceGroupName="openai-levelup-rg"
@@ -57,11 +60,13 @@ az group create --name $resourceGroupName --location $location
 
 ### Configuring OpenID Connect in Azure
 
-* execute [aad-federated-cred.sh](../../../tools/deploy/module0/aad-federated-cred.sh), passing your github username as the argument, as shown below:
+Execute `chmod` command on [aad-federated-cred.sh](../../../tools/deploy/module0/aad-federated-cred.sh) script to make it executable:
 
 ```bash
 chmod +x ./tools/deploy/module0/aad-federated-cred.sh
 ```
+
+* execute [aad-federated-cred.sh](../../../tools/deploy/module0/aad-federated-cred.sh), passing your github username as the argument, as shown below:
 
 ```bash
 ./tools/deploy/module0/aad-federated-cred.sh <your-github-username>
@@ -87,7 +92,7 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
 
   * This is achieved by running the Github Actions workflow file [module1-infra-worflow.yaml](../../../.github/workflows/module1-infra-workflow.yaml) which executes [module2-infra.bicep](../../../tools/deploy/Module1/infra/module1-infra.bicep) Bicep template. To trigger this workflow manually:
     1. click on the `Actions` tab.
-    2. Select `.github/workflows/module2-infra-worflow.yaml`.
+    2. Select `Deploy Module 1 Infrastructure` workflow.
     3. Click on the `Run workflow` button
 
 ### Deploying the Azure Function App code
@@ -99,7 +104,7 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
   4. Paste the XML content to your GitHub Repository > Settings > Secrets > Add a new secret > **AZURE_FUNCTIONAPP_PUBLISH_PROFILE**
   5. Trigger this workflow manually:
     * click on the `Actions` tab.
-    * Select `.github/workflows/module2-code-worflow.yaml`.
+    * Select `Deploy Azure Function App` workflow.
     * Click on the `Run workflow` button
 
 * Configure following **Application Settings** for the Azure Function by going to your `function app > Configuration > Application Settings`:
