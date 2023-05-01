@@ -5,7 +5,7 @@ has_children: false
 nav_order: 2
 ---
 
-# Module 3: Lab - Book Creator application
+## Module 3: Lab - Book Creator application
  
  The Book creator sample application shows how `planner`, `skills` and `memories` are used to enrich content for a specific use case and allows you to enter in a children's book topic. Then the `Planner` creates a plan for the functions (skills) to run based on the Ask. You can see the execution plan along with the results. The `Writer` Skill functions are chained together based on the user ask.
 
