@@ -18,6 +18,7 @@ For this workshop, we will be using GitHub Actions using OpenID Connect and Infr
 ## Steps for Deploying the infrastructure
 
 1. Creating an Azure Resource Group
+1. Creating Azure OpenAI API resource and deployment of `text-davinci-003` model
 1. Configuring OpenID Connect in Azure.
 1. Setting Github Actions secrets
 1. Enabling the GitHub Actions workflow
@@ -32,14 +33,17 @@ az login
 ```
 
    > [!NOTE]
-   > if you are using a non-Microsoft account, and if running CodeSpaces in the browser, you may receive an error with message `localhost refused to connect` after logging in. If so:
+   > if you are using a non-Microsoft account (e.g. FDPO account), and if are running CodeSpaces in the browser, you may receive an error with message `localhost refused to connect` after logging in. 
+   > ![localhost refused to connect](../../assets/images/module1/screenshot-localhost.png)
+   > If so:
    > 
    > 1. Copy the URL.
    > 1. Run `curl '<pasted url>'` (URL in quotes) in a new Visual Studio Code terminal.
-   > 
-   > In the original terminal, the login should now succeed.
+   >
+   > ![curl localhost](../../assets/images/module1/curl-localhost.png)
+   > 1. In the original terminal, the login should now succeed.
 
-Set appropriate Subscrtion Id
+Set appropriate Subscription Id
 
 ```bash
 az account set -s <your-subscription-id>
@@ -50,12 +54,61 @@ Ensure correct Subscription Id is set
 ```bash
 az account show
 ```
+
 Create Azure Resource Group
 
 ```bash
 export resourceGroupName="openai-levelup-rg"
-location="eastus"
+export location="eastus"
 az group create --name $resourceGroupName --location $location
+```
+
+### Creating Azure OpenAI API resource and deployment of `text-davinci-003` model
+
+If you have not already created an Azure OpenAI API resource and deployed the `text-davinci-003` model, you can follow the instructions [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal) to do so.
+
+Or, follow the instructions below to create the resource and deploy the model using Azure CLI.
+
+Run the following command to create an OpenAI resource
+
+```bash
+az cognitiveservices account create \
+-n MyOpenAIResource \
+-g $resourceGroupName \
+-l eastus \
+--kind OpenAI \
+--sku s0 
+```
+
+Run the following command to deploy an instance of `text-davinci-003` model
+
+```bash
+az cognitiveservices account deployment create \
+   -g $resourceGroupName \
+   -n MyOpenAIResource \
+   --deployment-name "text-davinci-003" \
+   --model-name text-davinci-003 \
+   --model-version "1"  \
+   --model-format OpenAI \
+   --scale-settings-scale-type "Standard"
+```
+
+To retrieve your endpoint:
+
+```bash
+az cognitiveservices account show \
+-n MyOpenAIResource \
+-g $resourceGroupName \
+| jq -r .properties.endpoint
+```
+
+To retrieve your primary API key:
+
+```bash
+az cognitiveservices account keys list \
+-n MyOpenAIResource \
+-g $resourceGroupName \
+| jq -r .key1
 ```
 
 ### Configuring OpenID Connect in Azure
@@ -72,7 +125,7 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
 ./tools/deploy/module0/aad-federated-cred.sh <your-github-username>
 ```
 
-* note down the **appId** echoed by the running the above script for use in next step
+* note down the **appId** echoed for use in next step
 
 ### Setting Github Actions secrets
 
