@@ -67,50 +67,6 @@ az group create --name $resourceGroupName --location $location
 
 If you have not already created an Azure OpenAI API resource and deployed the `text-davinci-003` model, you can follow the instructions [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/create-resource?pivots=web-portal) to do so.
 
-Or, follow the instructions below to create the resource and deploy the model using Azure CLI.
-
-Run the following command to create an OpenAI resource
-
-```bash
-az cognitiveservices account create \
--n MyOpenAIResource \
--g $resourceGroupName \
--l eastus \
---kind OpenAI \
---sku s0 
-```
-
-Run the following command to deploy an instance of `text-davinci-003` model
-
-```bash
-az cognitiveservices account deployment create \
-   -g $resourceGroupName \
-   -n MyOpenAIResource \
-   --deployment-name "text-davinci-003" \
-   --model-name text-davinci-003 \
-   --model-version "1"  \
-   --model-format OpenAI \
-   --scale-settings-scale-type "Standard"
-```
-
-To retrieve your endpoint:
-
-```bash
-az cognitiveservices account show \
--n MyOpenAIResource \
--g $resourceGroupName \
-| jq -r .properties.endpoint
-```
-
-To retrieve your primary API key:
-
-```bash
-az cognitiveservices account keys list \
--n MyOpenAIResource \
--g $resourceGroupName \
-| jq -r .key1
-```
-
 ### Configuring OpenID Connect in Azure
 
 Execute `chmod` command on [aad-federated-cred.sh](../../../tools/deploy/module0/aad-federated-cred.sh) script to make it executable:
