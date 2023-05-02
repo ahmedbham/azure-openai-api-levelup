@@ -7,7 +7,7 @@ nav_order: 2
 
 ## Module 3: Lab - Book Creator application
  
- The Book creator sample application shows how `planner`, `skills` and `memories` are used to enrich content for a specific use case and allows you to enter in a children's book topic. Then the `Planner` creates a plan for the functions (skills) to run based on the Ask. You can see the execution plan along with the results. The `Writer` Skill functions are chained together based on the user ask.
+ The Book creator sample application shows how SK uses `planner`, `skills` and `memories` are to create a children's book. The `Planner` creates a plan for the skills (functions) that are pre-defined for generating a book topic and creating a book. The `Writer` pre-defined skills are chained together based on the user ask to create the book.
 
 Requirements:
 
@@ -66,8 +66,16 @@ Requirements:
 
    ![Semantic Kernel Use cases](../../assets/images/module3/sk-bookcstart.png)
 
-9. Follow the application prompts to enter a book idea and click **get Ideas** button to see some sample suggestions.
+9. Follow the application prompts to enter a book idea and click **get Ideas** button to see some sample suggestions, screenshot should similar to below
+
+    ![Semantic Kernel Use cases](../../assets/images/module3/bookcreator1.png)
 
 10. Select an idea option and click on the **create book** button to see the newly created book. Note: you need to additionally click on the play button as shown below on the next screen to get the book contents.
 
-    ![Semantic Kernel Use cases](../../assets/images/module3/sk-bcplay.png)
+    ![Semantic Kernel Use cases](../../assets/images/module3/bookcreator2.png)
+
+    The final result of the book
+
+    ![Semantic Kernel Use cases](../../assets/images/module3/bookcreator3.png)
+
+
