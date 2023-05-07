@@ -55,6 +55,14 @@ Ensure correct Subscription Id is set
 az account show
 ```
 
+Register the following providers
+
+```bash
+az provider register --namespace Microsoft.Storage --wait
+az provider register --namespace Microsoft.Web --wait
+az provider register --namespace Microsoft.EventGrid --wait
+```
+
 Create Azure Resource Group
 
 ```bash
