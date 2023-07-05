@@ -1,33 +1,23 @@
-# Project
+# Azure OpenAI API Hands-on LevelUp Labs
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+Welcome to the **Azure OpenAI API Hands-on LevelUp Labs** repository! This repository contains three hands-on labs that will help you build intelligent applications using Azure OpenAI API.
 
-As the maintainer of this project, please make a few updates:
+## Lab 1: Transaction Classification Application
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+This lab demonstrates how to classify transaction records using OpenAI's GPT-3 language model and Azure Storage, Azure Event Grid, and Azure Function services. You will learn how to build an intelligent transaction classification app that can automatically categorize financial transactions.
 
-## Contributing
+## Lab 2: ChatGPT + Enterprise Data with OpenAI and Azure Cognitive Search
+This lab shows how to use Azure OpenAI Service to access the ChatGPT model (gpt-35-turbo) and Azure Cognitive Search for data indexing and retrieval. You will learn how to build a chatbot that can answer questions using enterprise data.
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+## Lab 3: Book Creator Sample Learning App
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+This lab demonstrates how to use the [semantic kernel](https://github.com/microsoft/semantic-kernel) framework to integrate OpenAI's Large Language Models (LLMs) with conventional programming languages. You will learn how to build an intelligent book creator app that can generate new content based on existing text.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+## Getting Started
+
+To get started with these labs, please follow the instructions [here](https://ahmedbham.github.io/azure-openai-api-levelup/)
 
 ## Trademarks
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party's policies.
