@@ -50,4 +50,4 @@ jobs:
           app-name: 'xact-classifier-openai-yv5ccgeeoqoww'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-         # publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CB7CDC9022BE456AAC1423E04CF92312 }}
