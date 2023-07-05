@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - 'tools/deploy/module2/**'
-      - 'azure-function-workflow.yaml'
+      - 'tools/deploy/module1/**'
+      - '.github/workflows/module1-azure-function-workflow.yaml'
 
 env: 
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'tools/deploy/module1/TransactionClassifier/'       # set this to the path to your function app project, defaults to the repository root
@@ -59,6 +59,5 @@ jobs:
       # set app_name equal to output from "retrieve the Function App name" step
         app-name: ${{ steps.get_functionapp_name.outputs.appname }}
         package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
 
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
