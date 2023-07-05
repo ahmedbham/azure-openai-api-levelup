@@ -120,7 +120,7 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
   3. Click on the `Run workflow` button
 
 * Configure following **Application Settings** for the Azure Function by going to your `function app > Configuration > Application Settings`:
-  1. OPENAI_API_BASE - Azure OpenAI API Endpoint URL (e.g. https://openai-demo-ahmedbham.openai.azure.com/)
+  1. OPENAI_API_BASE - Azure OpenAI API Endpoint URL (e.g. https://<youraccountname>.openai.azure.com/)
   2. OPENAI_API_KEY - Azure OpenAI API Key
   3. OPENAI_API_MODEL - "text-davinci-003" (set it equal to the `model name` you provided when deploying the `text-davinci-003` **model** in Azure OpenAI Studio)
 **Remember to click Save after adding the above settings**
@@ -141,7 +141,14 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
 ## Testing Transaction Classification App
 
 * Open the sample transaction file [25000_spend_dataset_current_25.csv](../../../tools/deploy/Module1/data/25000_spend_dataset_current_25.csv) and notice that the **classification** column is empty. This is the column that will be populated by the Azure Function by calling Azure OpenAI API.   	
-* Upload this file to the **classification** blob container: `portal > storage account > containers > classification > upload`
+* Upload this file to the **classification** blob container by entering the following CLI commands:
+
+```bash
+storage="$(az storage account list --resource-group $resourceGroupName --query [0].name -o tsv)"
+key="$(az storage account keys list -g $resourceGroupName  -n $storage --query [0].value -o tsv)"
+az storage blob upload --account-name $storage --account-key $key --container-name classification --file tools/deploy/module1/data/25000_spend_dataset_current_25.csv --name 25000_spend_dataset_current_25.csv
+```
+
 * After few seconds, download the updated file from the **output** blob container `portal > storage account > containers > output > download`
 * Open the file and notice the **classification** column is populated with the predicted category for each transaction.
 
@@ -150,5 +157,5 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
 * Delete all resources created in this lab by deleting the resource group that was created in the first step of this lab.
 
 ```bash
-az group delete --name <resource-group-name> --yes
+az group delete --name $resourceGroupName --yes
 ```
