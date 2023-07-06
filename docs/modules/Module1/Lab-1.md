@@ -140,7 +140,7 @@ chmod +x ./tools/deploy/module0/aad-federated-cred.sh
 
 ## Testing Transaction Classification App
 
-* Open the sample transaction file [25000_spend_dataset_current_25.csv](../../../tools/deploy/Module1/data/25000_spend_dataset_current_25.csv) and notice that the **classification** column is empty. This is the column that will be populated by the Azure Function by calling Azure OpenAI API.   	
+* Open the sample transaction file [25000_spend_dataset_current_25.csv](../../../tools/deploy/module1/data/25000_spend_dataset_current_25.csv) and notice that the **classification** column is empty. This is the column that will be populated by the Azure Function by calling Azure OpenAI API.   	
 * Upload this file to the **classification** blob container: `portal > storage account > containers > classification > upload`
 * After few seconds, download the updated file from the **output** blob container `portal > storage account > containers > output > download`
 * Open the file and notice the **classification** column is populated with the predicted category for each transaction.
