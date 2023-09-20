@@ -25,7 +25,7 @@ azd login
    > [!NOTE]
    > if you are using a non-Microsoft account, and if running CodeSpaces in the browser, you will need to run:
    >
-   > `azd login --use-device-code=false --tenant <your tenant id>`
+   > `azd login --use-device-code=false --tenant-id <your tenant id>`
    >
    > You may receive an error with message `localhost refused to connect` after logging in. If so:
    > 
