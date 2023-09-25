@@ -7,6 +7,10 @@ nav_order: 2
 
 ## Installation
 
+### Preferred CLI Environment for this lab
+
+It's easiest to run the lab instructions using [Azure Cloud Shell](https://shell.azure.com). 
+
 ### Project Initialization
 
 1. Create a new folder `lab2` and switch to it in the terminal
@@ -23,22 +27,26 @@ azd login
 ```
 
    > [!NOTE]
-   > if you are using a non-Microsoft account, and if running CodeSpaces in the browser, you will need to run:
+   > if you are using a non-Microsoft account, and if running CodeSpaces or Cloud Shell, you will need to run:
    >
    > `azd login --use-device-code=false --tenant-id <your tenant id>`
    >
+   > to obtain `<your tenant id>` run `az account show --query tenantId -o tsv`
+   > 
    > You may receive an error with message `localhost refused to connect` after logging in. If so:
    > 
    > 1. Copy the URL.
-   > 1. Run `curl '<pasted url>'` (URL in quotes) in a new Visual Studio Code terminal.
+   > 1. Run `curl '<pasted url>'` (URL in quotes) in a new CodeSpaces or Cloud Shell terminal.
    > 
-   > In the original terminal, the login should now succeed.
+   > In the original CodeSpaces or Cloud Shell terminal, the login should now succeed.
 
 1. Run the following command:
 
 ```bash
 azd config set defaults.subscription <yourSubscriptionID>
 ```
+
+to obtain `<yourSubscriptionID>`, run `az account show --query id -o tsv`
 
 1. Run the following command:
 
