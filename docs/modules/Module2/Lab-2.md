@@ -23,30 +23,26 @@ It's easiest to run the lab instructions using [Azure Cloud Shell](https://shell
 1. Run the following command:
 
 ```bash
-azd login
+your_tenant_id=$(az account show --query tenantId -o tsv)
+azd auth login --use-device-code=false --tenant-id $your_tenant_id
 ```
 
-   > [!NOTE]
-   > if you are using a non-Microsoft account, and if running CodeSpaces or Cloud Shell, you will need to run:
-   >
-   > `azd login --use-device-code=false --tenant-id <your tenant id>`
-   >
-   > to obtain `<your tenant id>` run `az account show --query tenantId -o tsv`
+   > **NOTE**
    > 
    > You may receive an error with message `localhost refused to connect` after logging in. If so:
    > 
    > 1. Copy the URL.
-   > 1. Run `curl '<pasted url>'` (URL in quotes) in a new CodeSpaces or Cloud Shell terminal.
+   > 1. Open a new Cloud Shell or CodeSpaces terminal 
+   > 1. Run `curl '<pasted url>'` (URL in quotes) in the new terminal.
    > 
-   > In the original CodeSpaces or Cloud Shell terminal, the login should now succeed.
+   > Return to the original CodeSpaces or Cloud Shell terminal; the login should now succeed.
 
 1. Run the following command:
 
 ```bash
-azd config set defaults.subscription <yourSubscriptionID>
+yourSubscriptionID=$(az account show --query id -o tsv)
+azd config set defaults.subscription $yourSubscriptionID
 ```
-
-to obtain `<yourSubscriptionID>`, run `az account show --query id -o tsv`
 
 1. Run the following command:
 
@@ -57,11 +53,12 @@ azd init -t azure-search-openai-demo
     * For the target location, the regions that currently support the models used in this sample are **East US** or **South Central US**. For an up-to-date list of regions and models, check [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
     * when prompted with `? Please enter a new environment name:`, enter `dev`
 
-    > [!NOTE]
-
-    > If you would like re-use your existing open ai deployemnt, please set azd env set AZURE_OPENAI_SERVICE {Name of existing > OpenAI service}
-    
-    > Run `azd env set AZURE_OPENAI_SERVICE {Name of existing OpenAI service}`
+   > **NOTE**
+   > 
+   > If you would like re-use your existing Azure OpenAI service resource:
+   > 
+   > Run `azd env set AZURE_OPENAI_SERVICE {Name of existing Azure OpenAI service}`
+   > 
 
 1. Execute the following command:
 
